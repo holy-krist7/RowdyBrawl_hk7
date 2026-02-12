@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemInfo" load_steps=3 format=3 uid="uid://cageqwiukpgo3"]
 
-[ext_resource type="PackedScene" uid="uid://cjap8u3mbbvtq" path="res://Items/unarmed.tscn" id="1_vynwl"]
+[ext_resource type="PackedScene" uid="uid://cjap8u3mbbvtq" path="res://Items/unarmed/unarmed.tscn" id="1_vynwl"]
 [ext_resource type="Script" uid="uid://iwfohwafl1eq" path="res://Items/ItemInfo.gd" id="1_wsqrx"]
 
 [resource]
