@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqq8uovueylvg"]
+[gd_scene load_steps=16 format=3 uid="uid://c6dn25so2exwg"]
 
-[ext_resource type="PackedScene" uid="uid://b5c8708romg66" path="res://playerFolder/the_player.tscn" id="1_dgsmt"]
+[ext_resource type="PackedScene" uid="uid://b4xi7r2vimk26" path="res://playerFolder/the_player.tscn" id="1_dgsmt"]
 [ext_resource type="Script" uid="uid://b16sfvefc1rxk" path="res://Level1/level_1.gd" id="1_qtbmi"]
 [ext_resource type="Texture2D" uid="uid://byohiugj7t85y" path="res://Level1/levelSprites/level1Screen1Larger.png" id="2_im851"]
 [ext_resource type="PackedScene" uid="uid://big3b2x1lv5lx" path="res://Level1/enemyEncounter/enemy_encounter_1.tscn" id="5_2h3pg"]

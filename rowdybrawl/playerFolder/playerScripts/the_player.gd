@@ -84,26 +84,6 @@ func _physics_process(delta: float) -> void:     # _physics_process runs in fixe
 	if Input.is_action_just_pressed("debug"):
 		pass
 		
-	# attacks and stuff
-	if Input.is_action_just_pressed("lightAttack") and canAttack():
-		changeAnimation("lightAttack")
-		if grounded:
-			doAttackCheckCombos("L")
-			
-		else:
-			doAttackCheckCombos("A")
-		#print(comboString)
-		
-	elif Input.is_action_just_pressed("heavyAttack") and canAttack():
-		changeAnimation("lightAttack")
-		if grounded:
-			doAttackCheckCombos("H")
-			changeAnimation("lightAttack")
-		else:
-			doAttackCheckCombos("S")
-			changeAnimation("lightAttack")
-		#print(comboString)
-	
 #	basic movement across the plane
 	if Input.is_action_pressed("left") and canMove():
 		changeAnimation("walk")
