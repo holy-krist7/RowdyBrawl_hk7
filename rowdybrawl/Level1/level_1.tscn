@@ -1,20 +1,4 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 [gd_scene load_steps=16 format=3 uid="uid://cqq8uovueylvg"]
-=======
-[gd_scene load_steps=14 format=3 uid="uid://cqq8uovueylvg"]
->>>>>>> Stashed changes
-=======
-[gd_scene load_steps=14 format=3 uid="uid://cqq8uovueylvg"]
->>>>>>> Stashed changes
-=======
-[gd_scene load_steps=14 format=3 uid="uid://cqq8uovueylvg"]
->>>>>>> Stashed changes
-=======
-[gd_scene load_steps=14 format=3 uid="uid://cqq8uovueylvg"]
->>>>>>> Stashed changes
 
 [ext_resource type="PackedScene" uid="uid://b5c8708romg66" path="res://playerFolder/the_player.tscn" id="1_dgsmt"]
 [ext_resource type="Script" uid="uid://b16sfvefc1rxk" path="res://Level1/level_1.gd" id="1_qtbmi"]

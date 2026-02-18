@@ -405,10 +405,6 @@ func canAttack() -> bool:
 	else:
 		return false
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 func enemyWasHit(damage : float):
 	specialMeter += damage / 200
 
@@ -420,10 +416,6 @@ func resetSoundPlayer():
 	sound_track_1.volume_db = 0.0
 	sound_track_1.pitch_scale = 1.0
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 func changeAnimation(animationName : String):
 	if animationName != currentAnim:
 		player_sprite.play(animationName)

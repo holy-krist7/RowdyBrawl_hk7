@@ -32,19 +32,8 @@ func aiAttackFunction(delta :float):
 				job_application_animator.play("jobApplicationSlamLeft")
 			hitTimer = hitRate
 			ai = aiStates.CHASE
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 			goRight = randi_range(0,1)
 		
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 func take_hit(damage: int, knockback_dir: Vector2, knockback_strength: float, stun_duration: float, attacker : Node2D = null) -> void:
 	if currentAttack != null:
 		currentAttack.duration = 0
@@ -52,13 +41,3 @@ func take_hit(damage: int, knockback_dir: Vector2, knockback_strength: float, st
 	job_application_animator.play("RESET")
 	job_application_animator.play("hurt")
 	super(damage, knockback_dir, knockback_strength, stun_duration, attacker)
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes

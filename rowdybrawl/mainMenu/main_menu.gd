@@ -5,8 +5,6 @@ extends Node2D
 
 
 func _on_start_pressed() -> void:
-	fade_transition.show()
-	fade_transition.get_child(0).play("fadeOut")
 	timer.start()
 	color_rect.get_parent().show()
 	color_rect.play("fadeIn")

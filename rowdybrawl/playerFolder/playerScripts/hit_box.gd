@@ -72,23 +72,8 @@ func attemptToDamageBodyFromArea(area : Area2D):
 			if userKnockbackOnHitDir != Vector2.ZERO and userRef.has_method("applyKnockback"):
 				userRef.applyKnockback(userKnockbackOnHitDir, userKnockbackOnHitStrength)
 			if userRef.has_method("enemyWasHit"):
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				userRef.enemyWasHit(damage)
-=======
-				userRef.enemyWasHit(self)
->>>>>>> Stashed changes
-=======
-				userRef.enemyWasHit(self)
->>>>>>> Stashed changes
-=======
-				userRef.enemyWasHit(self)
->>>>>>> Stashed changes
-=======
-				userRef.enemyWasHit(self)
->>>>>>> Stashed changes
+
 	elif area.get_parent().name == "hitBox":
 		body = area.get_parent().get_parent().get_parent()
 		if zPosCheck(body.playerBody) and hitEnemies.find(body.playerBody) == -1:

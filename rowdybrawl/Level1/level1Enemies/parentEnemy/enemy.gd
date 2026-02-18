@@ -271,31 +271,15 @@ func aiAttackFunction(delta :float):
 	if (playerRef.playerBody.global_position - global_position).length() > 300:
 		ai = aiStates.CHASE
 		hitTimer = hitRate
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 		goRight = randi_range(0,1)
-=======
+
+		
 func setRelativeTargetPos(relativeTargetPos: Vector2):
 	targetPos = global_position + relativeTargetPos
 	print("going to: " + str(targetPos))
->>>>>>> Stashed changes
-=======
-func setRelativeTargetPos(relativeTargetPos: Vector2):
-	targetPos = global_position + relativeTargetPos
-	print("going to: " + str(targetPos))
->>>>>>> Stashed changes
-=======
-func setRelativeTargetPos(relativeTargetPos: Vector2):
-	targetPos = global_position + relativeTargetPos
-	print("going to: " + str(targetPos))
->>>>>>> Stashed changes
-=======
-func setRelativeTargetPos(relativeTargetPos: Vector2):
-	targetPos = global_position + relativeTargetPos
-	print("going to: " + str(targetPos))
->>>>>>> Stashed changes
+
+	
+	
 
 func isCloseToTarget(range : float = 15) -> bool:
 	var dist : float = (targetPos - global_position).length()
@@ -323,32 +307,30 @@ func _on_sound_track_1_finished() -> void:
 	resetSoundTrack()
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	sound_track_1.play()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
+	
+	
 	if body.get_parent() is player:
 		playerRef = body.get_parent()
 		playerRef.enterCombat()
 		ai = aiStates.CHASE
 		goRight = randi_range(0,1)
-=======
+
 	#if body.get_parent() is player:
 		#playerRef = body.get_parent()
 		#ai = aiStates.CHASE
->>>>>>> Stashed changes
-=======
+
+		
 	#if body.get_parent() is player:
 		#playerRef = body.get_parent()
 		#ai = aiStates.CHASE
->>>>>>> Stashed changes
-=======
+
+		
 	#if body.get_parent() is player:
 		#playerRef = body.get_parent()
 		#ai = aiStates.CHASE
->>>>>>> Stashed changes
-=======
+
+		
 	#if body.get_parent() is player:
 		#playerRef = body.get_parent()
 		#ai = aiStates.CHASE
->>>>>>> Stashed changes
