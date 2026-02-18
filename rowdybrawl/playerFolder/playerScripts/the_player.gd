@@ -27,6 +27,7 @@ const JUMP_SOUND_EFFECT = preload("uid://bdhakvk1lh7cu")
 const LIGHT_PUNCH_SOUND = preload("uid://01vr24exuxb1")
 const HEAVY_PUNCH_SOUND = preload("uid://c81u1r42jntpc")
 const LAND_SOUND_EFFECT = preload("uid://c0fokvn508fgs")
+const ROWDY_BRAWL_VICTORY_THEME = preload("uid://yblfi7yn551r")
 
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
@@ -54,7 +55,7 @@ var comboTimer : float = 0
 const comboChainTime : float = 1
 
 var parryTimer := 0.0
-const parryWindow := 0.3
+const parryWindow := 0.2
 var parryCooldownTimer := 0.0
 const parryCooldownAmount := parryWindow + 1.0  # you have to add parryWindow, because parry cooldown starts the moment you parry
 
@@ -63,7 +64,8 @@ var currentAnim = ""
 
 func _ready() -> void:
 	sound_track_1.play() # this is so we can use Playback (in the play sound function) to utilize polyphony
-	spawnIn()
+	spawnPlayerAnim()
+	stun_timer = 1.5
 
 func _physics_process(delta: float) -> void:     # _physics_process runs in fixed(very tiny) intervals, regardless of the framerate
 												 # This makes it good for movement and physics-based code
@@ -84,17 +86,22 @@ func _physics_process(delta: float) -> void:     # _physics_process runs in fixe
 		
 	# attacks and stuff
 	if Input.is_action_just_pressed("lightAttack") and canAttack():
+		changeAnimation("lightAttack")
 		if grounded:
 			doAttackCheckCombos("L")
+			
 		else:
 			doAttackCheckCombos("A")
 		#print(comboString)
 		
 	elif Input.is_action_just_pressed("heavyAttack") and canAttack():
+		changeAnimation("lightAttack")
 		if grounded:
 			doAttackCheckCombos("H")
+			changeAnimation("lightAttack")
 		else:
 			doAttackCheckCombos("S")
+			changeAnimation("lightAttack")
 		#print(comboString)
 	
 #	basic movement across the plane
@@ -129,9 +136,9 @@ func _physics_process(delta: float) -> void:     # _physics_process runs in fixe
 			else:
 				playerBody.velocity.y += accelaration * yReductionPercent
 	
-	if playerBody.velocity.length() <=1:
+	if playerBody.velocity.length() <=1 and player_sprite.animation == "walk":
 		changeAnimation("idle")
-	else:
+	elif player_sprite.animation == "walk":
 		player_sprite.speed_scale = (playerBody.velocity.length() + 150) / (maxSpeed * 0.8)
 	
 		
@@ -200,12 +207,12 @@ func letterToAttack(attack):
 			# the duration of the hitbox is the third number
 			# and the endlag in which the player can not attack after the attack has finished is the last one
 			currentAttack = spawnAttack(LIGHT_ATTACK, 3, 0.1, 0.1, -0.05)
-			currentAttack.stunDuration = .8
+			currentAttack.stunDuration = .1
 			playSound(LIGHT_PUNCH_SOUND)
 		"H":
 			# same thing as light attack but with different numbers
 			currentAttack = spawnAttack(HEAVY_ATTACK, 8, 0.35, 0.1, 0.1)
-			currentAttack.stunDuration = 1
+			currentAttack.stunDuration = .2
 			currentAttack.zReach = 25
 			applyKnockback(Vector2(facingDir,0), 100)
 			playSound(HEAVY_PUNCH_SOUND)
@@ -249,7 +256,7 @@ func doAttackCheckCombos(attack : String):
 				playSound(LIGHT_PUNCH_SOUND, 2.3)
 			"LLLAAS":
 				currentAttack = spawnAttack(AIR_HEAVY_ATTACK, 0, 0,0)
-				applyKnockback(Vector2(facingDir,.2), 1000)
+				applyKnockback(Vector2(facingDir,-.4), 375)
 				playSound(LIGHT_PUNCH_SOUND, 3)
 #			Classic Combo
 			"LLH":
@@ -285,6 +292,7 @@ func doAttackCheckCombos(attack : String):
 		comboString = attack
 		letterToAttack(attack)
 func specialAttack():
+	player_action_animator.stop()
 	player_action_animator.play("specialAttack")
 	stun_timer = 0.4
 	specialMeter = 0
@@ -300,7 +308,7 @@ func specialAttackDone():
 func take_hit(damage: int, knockback_dir: Vector2, knockback_strength: float, stun_duration: float, attacker : Enemy = null) -> void:
 	if attacker != null and parryTimer > 0:
 		parryCooldownTimer = 0
-		specialMeter += damage / 100
+		specialMeter += float(damage)/ 100
 		var normalToAttacker = (attacker.global_position - playerBody.global_position).normalized()
 		if attacker.grounded:
 			attacker.take_hit(10,Vector2(normalToAttacker.x,0),500, 1, self)
@@ -309,10 +317,14 @@ func take_hit(damage: int, knockback_dir: Vector2, knockback_strength: float, st
 		return
 	
 	health -= damage
+	if player_action_animator.current_animation != "specialAttack":
+		player_action_animator.stop()
+		player_action_animator.play("hurtAnim")
 	#animation_player.play("hitFlash")
 	# Apply knockback and stun
 	applyKnockback(knockback_dir,knockback_strength)
-	stun_timer = stun_duration
+	if stun_duration > stun_timer:
+		stun_timer = stun_duration
 	
 	if health <= 0:
 		die()
@@ -398,23 +410,7 @@ func canAttack() -> bool:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 func enemyWasHit(damage : float):
-	specialMeter += damage / 100
-=======
-func enemyWasHit(successHitbox : hitBox):
-	specialMeter += successHitbox.damage / 100
->>>>>>> Stashed changes
-=======
-func enemyWasHit(successHitbox : hitBox):
-	specialMeter += successHitbox.damage / 100
->>>>>>> Stashed changes
-=======
-func enemyWasHit(successHitbox : hitBox):
-	specialMeter += successHitbox.damage / 100
->>>>>>> Stashed changes
-=======
-func enemyWasHit(successHitbox : hitBox):
-	specialMeter += successHitbox.damage / 100
->>>>>>> Stashed changes
+	specialMeter += damage / 200
 
 # misc
 func playSound(sound : AudioStream, pitch : float = 1.0, volumedB : float = 0):
@@ -431,28 +427,12 @@ func resetSoundPlayer():
 func changeAnimation(animationName : String):
 	if animationName != currentAnim:
 		player_sprite.play(animationName)
+		
 
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-func spawnIn():
-	sprite_2d.self_modulate.a = 0
+
+func spawnPlayerAnim():
+	player_sprite.show()
 	player_action_animator.play("spawnIn")
-	show()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 func _on_sound_player_finished() -> void:
 	resetSoundPlayer()
@@ -461,3 +441,19 @@ func _on_player_action_animator_animation_finished(anim_name: StringName) -> voi
 	match anim_name:
 		"deathAnimation":
 			get_tree().change_scene_to_file("res://Level1/level_1.tscn")
+		"victory":
+			get_tree().quit()
+
+func victory():
+	playSound(ROWDY_BRAWL_VICTORY_THEME)
+	player_action_animator.play("victory")
+	get_parent().fadeOut()
+	stun_timer = 10
+
+func _on_player_sprite_animation_finished() -> void:
+	changeAnimation("idle")
+
+
+func _on_player_sprite_animation_looped() -> void:
+	if player_sprite.animation != "walk":
+		changeAnimation("idle")
