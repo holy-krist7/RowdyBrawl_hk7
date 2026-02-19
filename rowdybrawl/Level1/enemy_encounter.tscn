@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b7ym7mn2r7104"]
 
-[ext_resource type="Script" uid="uid://bknuw0rgw0dx6" path="res://Level1/level1Items/enemyEncounter/enemy_encounter.gd" id="1_qo4aw"]
+[ext_resource type="Script" uid="uid://bknuw0rgw0dx6" path="res://Level1/enemyEncounter/enemy_encounter.gd" id="1_qo4aw"]
 [ext_resource type="PackedScene" uid="uid://c7lvusf64l3g3" path="res://Level1/level1Items/enemyEncounter/enemy_spawnpoint.tscn" id="2_fljjo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnyjw"]

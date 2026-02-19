@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3kcv6ktd1ks0" path="res://mainMenu/rowdyBrawlPlayButtonNonSelected.png" id="2_0o04g"]
 [ext_resource type="PackedScene" uid="uid://chgbc048ycjqu" path="res://Level1/level1Soundtrack/music_manager.tscn" id="2_6ay73"]
 [ext_resource type="Texture2D" uid="uid://cctml1qqkt11b" path="res://mainMenu/rowdyBrawlPlayButtonHighlight.png" id="3_1dglg"]
-[ext_resource type="AudioStream" uid="uid://b1am57kn1nric" path="res://mainMenu/RowdyBrawlMainMenuGenny.wav" id="3_b4frg"]
+[ext_resource type="AudioStream" uid="uid://c3mg612pjt2iq" path="res://mainMenu/RowdyBrawlMainMenuGenny.wav" id="3_b4frg"]
 [ext_resource type="Texture2D" uid="uid://bmgrhc3yosuum" path="res://mainMenu/rowdyBrawlPlayButtonClicked.png" id="3_lgs6n"]
 [ext_resource type="PackedScene" uid="uid://revtuuauqf2c" path="res://mainMenu/color_rect.tscn" id="7_lgs6n"]
 

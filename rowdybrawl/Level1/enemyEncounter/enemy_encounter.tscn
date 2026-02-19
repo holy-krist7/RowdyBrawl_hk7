@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://biisl0tjeljhs"]
 
-[ext_resource type="Script" uid="uid://v5ksi3antmkq" path="res://enemy_encounter.gd" id="1_5ly4a"]
+[ext_resource type="Script" uid="uid://bknuw0rgw0dx6" path="res://Level1/enemyEncounter/enemy_encounter.gd" id="1_5ly4a"]
 [ext_resource type="PackedScene" uid="uid://c6sx1igpnncyc" path="res://Level1/level1Items/camera_stop_point.tscn" id="2_86flb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ly4a"]
