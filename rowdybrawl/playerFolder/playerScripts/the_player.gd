@@ -318,7 +318,7 @@ func applyKnockback(direction : Vector2, strength : float):
 		playerYVelocity = -direction.y * strength
 	if direction.y < 0:
 		grounded = false
-func enterCombat(enemyInitiated : Enemy = null):
+func enterCombat(_enemyInitiated : Enemy = null):
 	music_manager.setCombatTrack(true)
 func parry():
 	if parryCooldownTimer <= 0:

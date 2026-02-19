@@ -73,6 +73,7 @@ func attemptToDamageBodyFromArea(area : Area2D):
 				userRef.applyKnockback(userKnockbackOnHitDir, userKnockbackOnHitStrength)
 			if userRef.has_method("enemyWasHit"):
 				userRef.enemyWasHit(damage)
+
 	elif area.get_parent().name == "hitBox":
 		body = area.get_parent().get_parent().get_parent()
 		if zPosCheck(body.playerBody) and hitEnemies.find(body.playerBody) == -1:
