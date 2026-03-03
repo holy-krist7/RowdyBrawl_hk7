@@ -431,12 +431,12 @@ shape = SubResource("CapsuleShape2D_qsbax")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="playerBody"]
 z_index = 4096
-offset_left = -83.0
+offset_left = -120.0
 offset_top = -96.0
-offset_right = -43.0
-offset_bottom = -56.0
-scale = Vector2(2.7003262, 2.2197995)
-theme_override_font_sizes/normal_font_size = 6
+offset_bottom = -36.0
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/normal_font_size = 20
+text = "winner"
 scroll_active = false
 autowrap_mode = 0
 
