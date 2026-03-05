@@ -13,6 +13,7 @@ class_name player   # the tutorial doesnt talk about this(because technically th
 @onready var player_action_animator: AnimationPlayer = $playerBody/playerActionAnimator
 @onready var music_manager: musicManager = $playerBody/musicManager
 @onready var camera_controller: cameraController = $cameraController
+@onready var item_controller: ItemController = %ItemController
 
 # load up the player attack hitboxes
 const LIGHT_ATTACK = preload("uid://cclox11udehj4")
@@ -61,6 +62,8 @@ const parryCooldownAmount := parryWindow + 1.0  # you have to add parryWindow, b
 
 var specialMeter := 0.0
 var currentAnim = ""
+
+var is_item_equipped: bool
 
 func _ready() -> void:
 	sound_track_1.play() # this is so we can use Playback (in the play sound function) to utilize polyphony
@@ -400,6 +403,9 @@ func canMove() -> bool:
 	else:
 		return false
 func canAttack() -> bool:
+	if is_item_equipped:
+		return false
+			
 	if stun_timer <= 0 and attackBusyTimer <= 0:
 		return true
 	else:
@@ -449,3 +455,17 @@ func _on_player_sprite_animation_finished() -> void:
 func _on_player_sprite_animation_looped() -> void:
 	if player_sprite.animation != "walk":
 		changeAnimation("idle")
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		# if keys 1-9 are pressed
+		if event.keycode - KEY_1 in range(9):
+			var item_index: int = event.keycode - KEY_1
+			if item_index < item_controller.all_items.size(): # if index is within bounds
+				item_controller.equip_item(item_index)
+				is_item_equipped = true
+
+		elif event.keycode in [KEY_0, KEY_Q]:
+			item_controller.unequip_current_item()
+			is_item_equipped = false
+
