@@ -467,6 +467,13 @@ position = Vector2(1, -33)
 sprite_frames = SubResource("SpriteFrames_qyj71")
 animation = &"idle"
 
+[node name="ItemController" type="Node2D" parent="playerBody/hitBox/playerSprite" node_paths=PackedStringArray("player_node")]
+unique_name_in_owner = true
+position = Vector2(-1, 33)
+script = ExtResource("7_y3gru")
+player_node = NodePath("../../../..")
+starting_items = Array[ExtResource("7_a8wlk")]([ExtResource("8_sxhot")])
+
 [node name="soundTrack1" type="AudioStreamPlayer2D" parent="playerBody"]
 stream = SubResource("AudioStreamPolyphonic_6sxll")
 max_polyphony = 4
@@ -479,12 +486,6 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_y3gru")
 }
-
-[node name="ItemController" type="Node2D" parent="playerBody" node_paths=PackedStringArray("player_node")]
-unique_name_in_owner = true
-script = ExtResource("7_y3gru")
-player_node = NodePath("../..")
-starting_items = Array[ExtResource("7_a8wlk")]([ExtResource("8_sxhot"), ExtResource("8_sxhot"), ExtResource("8_sxhot")])
 
 [node name="cameraController" parent="." instance=ExtResource("3_olns3")]
 

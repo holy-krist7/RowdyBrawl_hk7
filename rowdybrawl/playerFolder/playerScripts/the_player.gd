@@ -106,6 +106,8 @@ func _physics_process(delta: float) -> void:     # _physics_process runs in fixe
 			doAttackCheckCombos("S")
 			changeAnimation("lightAttack")
 		#print(comboString)
+
+	item_controller.scale.x = facingDir
 	
 #	basic movement across the plane
 	if Input.is_action_pressed("left") and canMove():
