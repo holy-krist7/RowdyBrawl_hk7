@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerItem" load_steps=3 format=3 uid="uid://f7p5tv6b1fxa"]
+
+[ext_resource type="PackedScene" uid="uid://bn7jo3gv17mrv" path="res://Items/gun/gun_item_node.tscn" id="1_hx5vx"]
+[ext_resource type="Script" uid="uid://55a37mrx3qko" path="res://Items/player_item.gd" id="1_xy1nq"]
+
+[resource]
+script = ExtResource("1_xy1nq")
+item_name = "Gun"
+item_scene = ExtResource("1_hx5vx")
+metadata/_custom_type_script = "uid://55a37mrx3qko"

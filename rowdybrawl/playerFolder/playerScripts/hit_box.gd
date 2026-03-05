@@ -4,7 +4,7 @@ class_name hitBox
 @onready var hurt_area: Area2D = $hurtArea
 
 var myZIndex
-var zReach = 18
+var zReach = 12
 @export var damage : float
 var duration : float = 10000
 var activeAfter : float = 0
@@ -14,6 +14,7 @@ var lifeTimer : float = 0
 @export var stunDuration := 0.5
 
 var hitEnemies : Array
+var teamAttack = true
 
 var userKnockbackOnHitDir : Vector2 = Vector2.ZERO
 var userKnockbackOnHitStrength : float = 0.0
@@ -62,6 +63,8 @@ func _on_hurt_area_area_entered(area: Area2D) -> void:
 func attemptToDamageBodyFromArea(area : Area2D):
 	var body : Node2D
 	if area.name == "enemy_hitbox":
+		if !teamAttack:
+			damage /= 3
 		body = area.get_parent()
 		if zPosCheck(body) and hitEnemies.find(body) == -1:
 			damageEnemy(body)
@@ -69,23 +72,8 @@ func attemptToDamageBodyFromArea(area : Area2D):
 			if userKnockbackOnHitDir != Vector2.ZERO and userRef.has_method("applyKnockback"):
 				userRef.applyKnockback(userKnockbackOnHitDir, userKnockbackOnHitStrength)
 			if userRef.has_method("enemyWasHit"):
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				userRef.enemyWasHit(damage)
-=======
-				userRef.enemyWasHit(self)
->>>>>>> Stashed changes
-=======
-				userRef.enemyWasHit(self)
->>>>>>> Stashed changes
-=======
-				userRef.enemyWasHit(self)
->>>>>>> Stashed changes
-=======
-				userRef.enemyWasHit(self)
->>>>>>> Stashed changes
+
 	elif area.get_parent().name == "hitBox":
 		body = area.get_parent().get_parent().get_parent()
 		if zPosCheck(body.playerBody) and hitEnemies.find(body.playerBody) == -1:

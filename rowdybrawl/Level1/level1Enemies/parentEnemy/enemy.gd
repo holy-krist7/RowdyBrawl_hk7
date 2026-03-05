@@ -8,6 +8,7 @@ class_name Enemy
 @onready var enemy_collision: CollisionShape2D = $enemyCollision
 @onready var stun_indicator: Sprite2D = $enemy_hitbox/stunIndicator
 @onready var sound_track_1: AudioStreamPlayer2D = $soundTrack1
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 # load some hitboxes for use
 @onready var ENEMY_EXAMPLE_ATTACK = load("uid://d3g686l1tme5q")
@@ -57,6 +58,8 @@ var hitTimer : float = hitRate
 
 func _ready() -> void:
 	sound_track_1.play()
+	animation_player.play("spawnIN")
+	stun_timer = 1
 
 func _physics_process(delta: float) -> void:
 	# stun countdown
@@ -100,6 +103,7 @@ func _physics_process(delta: float) -> void:
 	
 	if (global_position.y < RenderingServer.CANVAS_ITEM_Z_MAX and global_position.y > RenderingServer.CANVAS_ITEM_Z_MIN):
 		animated_sprite_2d.z_index = int(global_position.y)
+		sprite_2d.z_index =  int(global_position.y) - 1
 	
 	enemy_hitbox.position.y = -(yPosition / 100)
 	
@@ -129,10 +133,10 @@ func _physics_process(delta: float) -> void:
 
 
 # Combat attacking stuff
-func spawnAttack(hitboxToUse : PackedScene, attackDamage : float, attackStartup : float, attackDuration: float, attackEndlag : float = 0.0) -> hitBox:
+func spawnAttack(hitboxToUse : PackedScene, attackDamage : float, attackStartup : float, attackDuration: float, attackEndlag : float = 0.0, customAttachSlot = enemy_hitbox) -> hitBox:
 	var attackHitbox : hitBox = hitboxToUse.instantiate();
 	attackHitbox.myZIndex = self.global_position.y
-	enemy_hitbox.add_child(attackHitbox)
+	customAttachSlot.add_child(attackHitbox)
 	attackHitbox.activeAfter = attackStartup
 	attackHitbox.damage = attackDamage
 	attackHitbox.dir = facingDir
@@ -147,7 +151,7 @@ func spawnAttack(hitboxToUse : PackedScene, attackDamage : float, attackStartup 
 	return attackHitbox
 func take_hit(damage: int, knockback_dir: Vector2, knockback_strength: float, stun_duration: float, attacker : Node2D = null) -> void:
 	health -= damage
-	#animation_player.play("hitFlash")
+	animation_player.play("hurt")
 	# Apply knockback and stun
 	if armorTimer <= 0:
 		applyKnockback(knockback_dir,knockback_strength)
@@ -169,6 +173,8 @@ func applyKnockback(direction : Vector2, strength : float):
 	if direction.y < 0:
 		grounded = false
 func die():
+	if !enemy_alive:
+		return
 	enemy_alive = false
 	health = 0
 	applyKnockback(Vector2(.3,-1), 5000)
@@ -257,31 +263,15 @@ func aiAttackFunction(delta :float):
 	if (playerRef.playerBody.global_position - global_position).length() > 300:
 		ai = aiStates.CHASE
 		hitTimer = hitRate
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 		goRight = randi_range(0,1)
-=======
+
+		
 func setRelativeTargetPos(relativeTargetPos: Vector2):
 	targetPos = global_position + relativeTargetPos
 	print("going to: " + str(targetPos))
->>>>>>> Stashed changes
-=======
-func setRelativeTargetPos(relativeTargetPos: Vector2):
-	targetPos = global_position + relativeTargetPos
-	print("going to: " + str(targetPos))
->>>>>>> Stashed changes
-=======
-func setRelativeTargetPos(relativeTargetPos: Vector2):
-	targetPos = global_position + relativeTargetPos
-	print("going to: " + str(targetPos))
->>>>>>> Stashed changes
-=======
-func setRelativeTargetPos(relativeTargetPos: Vector2):
-	targetPos = global_position + relativeTargetPos
-	print("going to: " + str(targetPos))
->>>>>>> Stashed changes
+
+	
+	
 
 func isCloseToTarget(range : float = 15) -> bool:
 	var dist : float = (targetPos - global_position).length()
@@ -309,32 +299,30 @@ func _on_sound_track_1_finished() -> void:
 	resetSoundTrack()
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	sound_track_1.play()
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
+	
+	
 	if body.get_parent() is player:
 		playerRef = body.get_parent()
 		playerRef.enterCombat()
 		ai = aiStates.CHASE
 		goRight = randi_range(0,1)
-=======
+
 	#if body.get_parent() is player:
 		#playerRef = body.get_parent()
 		#ai = aiStates.CHASE
->>>>>>> Stashed changes
-=======
+
+		
 	#if body.get_parent() is player:
 		#playerRef = body.get_parent()
 		#ai = aiStates.CHASE
->>>>>>> Stashed changes
-=======
+
+		
 	#if body.get_parent() is player:
 		#playerRef = body.get_parent()
 		#ai = aiStates.CHASE
->>>>>>> Stashed changes
-=======
+
+		
 	#if body.get_parent() is player:
 		#playerRef = body.get_parent()
 		#ai = aiStates.CHASE
->>>>>>> Stashed changes

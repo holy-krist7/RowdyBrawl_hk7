@@ -1,11 +1,13 @@
 extends Node2D
 class_name level1
 
-@onready var fade_transition: ColorRect = $fadeTransition
+@onready var color_rect: AnimationPlayer = $ColorRect/AnimationPlayer
 
-func fadeIntoLevel():
-	fade_transition.show()
-	fade_transition.get_child(0).play("fadeIn")
-	
 func _ready() -> void:
-	fadeIntoLevel()
+	fadeIn()
+	
+func fadeIn():
+	color_rect.play("fadeOut")
+
+func fadeOut():
+	color_rect.play("fadeIn")

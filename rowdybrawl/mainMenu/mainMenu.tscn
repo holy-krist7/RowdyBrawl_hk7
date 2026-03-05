@@ -6,10 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://cctml1qqkt11b" path="res://mainMenu/rowdyBrawlPlayButtonHighlight.png" id="3_1dglg"]
 [ext_resource type="AudioStream" uid="uid://b1am57kn1nric" path="res://mainMenu/RowdyBrawlMainMenuGenny.wav" id="3_b4frg"]
 [ext_resource type="Texture2D" uid="uid://bmgrhc3yosuum" path="res://mainMenu/rowdyBrawlPlayButtonClicked.png" id="3_lgs6n"]
-[ext_resource type="PackedScene" uid="uid://2p4312ho5jiy" path="res://mainMenu/fadeTransition.tscn" id="7_lgs6n"]
+[ext_resource type="PackedScene" uid="uid://revtuuauqf2c" path="res://mainMenu/color_rect.tscn" id="7_lgs6n"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_kpht7")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -17.0
+offset_top = -8.0
+offset_right = 616.0
+offset_bottom = 337.0
+color = Color(0.8666667, 0.30588236, 0.06666667, 1)
 
 [node name="buttonManager" type="Control" parent="."]
 layout_mode = 3
@@ -54,9 +61,14 @@ level1CalmTheme = ExtResource("3_b4frg")
 isMenu = true
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.2999999999999998
 
-[node name="fadeTransition" parent="." instance=ExtResource("7_lgs6n")]
+[node name="ColorRect" parent="." instance=ExtResource("7_lgs6n")]
 visible = false
+offset_left = -85.0
+offset_top = -52.0
+offset_right = -45.0
+offset_bottom = -12.0
 
 [connection signal="pressed" from="buttonManager/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="buttonManager/options" to="." method="_on_options_pressed"]
