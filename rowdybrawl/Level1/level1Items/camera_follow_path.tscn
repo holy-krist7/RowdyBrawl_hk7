@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhe8dmp47prd3"]
+
+[sub_resource type="GDScript" id="GDScript_i80g2"]
+script/source = "extends Path2D
+
+@export var target_node: Node2D
+@onready var follow: PathFollow2D = $PathFollow
+
+func _process(delta: float) -> void:
+	var offset := curve.get_closest_offset(target_node.global_position)
+	follow.progress = offset
+"
+
+[node name="CameraFollowPath" type="Path2D"]
+script = SubResource("GDScript_i80g2")
+
+[node name="PathFollow" type="PathFollow2D" parent="."]
+position = Vector2(1276.513, 30)
+
+[node name="Camera2D" type="Camera2D" parent="PathFollow"]
+position_smoothing_enabled = true

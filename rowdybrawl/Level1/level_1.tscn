@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cqq8uovueylvg"]
+[gd_scene load_steps=19 format=3 uid="uid://cqq8uovueylvg"]
 
 [ext_resource type="PackedScene" uid="uid://b5c8708romg66" path="res://playerFolder/the_player.tscn" id="1_dgsmt"]
 [ext_resource type="Script" uid="uid://b16sfvefc1rxk" path="res://Level1/level_1.gd" id="1_qtbmi"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://boarn0aagqgfp" path="res://Level1/enemyEncounter/enemy_encounter_2.tscn" id="6_i80g2"]
 [ext_resource type="PackedScene" uid="uid://dogk62sgnigq" path="res://Level1/enemyEncounter/enemy_encounter_3.tscn" id="7_2h3pg"]
 [ext_resource type="PackedScene" uid="uid://d3p53ex44txe2" path="res://Items/gun/gun_collectible.tscn" id="8_i80g2"]
+[ext_resource type="PackedScene" uid="uid://bhe8dmp47prd3" path="res://Level1/level1Items/camera_follow_path.tscn" id="9_jvwuh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_im851"]
 size = Vector2(867, 85)
@@ -32,6 +33,12 @@ size = Vector2(4324, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvwuh"]
 size = Vector2(777.48883, 278.24)
+
+[sub_resource type="Curve2D" id="Curve2D_jvwuh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 81, 30, 0, 0, 0, 0, 3546, 30)
+}
+point_count = 2
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_qtbmi")
@@ -156,3 +163,9 @@ position = Vector2(1911, 67)
 
 [node name="Collectible" parent="." instance=ExtResource("8_i80g2")]
 position = Vector2(1775, 163)
+
+[node name="CameraFollowPath" parent="." node_paths=PackedStringArray("target_node") instance=ExtResource("9_jvwuh")]
+curve = SubResource("Curve2D_jvwuh")
+target_node = NodePath("../thePlayer/playerBody")
+
+[editable path="thePlayer"]
