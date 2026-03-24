@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://boarn0aagqgfp" path="res://Level1/enemyEncounter/enemy_encounter_2.tscn" id="6_i80g2"]
 [ext_resource type="PackedScene" uid="uid://dogk62sgnigq" path="res://Level1/enemyEncounter/enemy_encounter_3.tscn" id="7_2h3pg"]
 [ext_resource type="PackedScene" uid="uid://d3p53ex44txe2" path="res://Items/gun/gun_collectible.tscn" id="8_i80g2"]
-[ext_resource type="PackedScene" uid="uid://bhe8dmp47prd3" path="res://Level1/level1Items/camera_follow_path.tscn" id="9_jvwuh"]
-[ext_resource type="PackedScene" uid="uid://glcguyxiguua" path="res://Level1/level1Items/camera_follow_path_section.tscn" id="10_2okni"]
+[ext_resource type="PackedScene" uid="uid://bhe8dmp47prd3" path="res://CameraSystem/camera_follow_path.tscn" id="9_jvwuh"]
+[ext_resource type="PackedScene" uid="uid://glcguyxiguua" path="res://CameraSystem/camera_follow_path_section.tscn" id="10_2okni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_im851"]
 size = Vector2(867, 85)
